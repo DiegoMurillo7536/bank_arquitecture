@@ -13,13 +13,16 @@ class TransactionTypeUI:
         self.entry_label.grid(row=0, column=1, padx=10, pady=10)
 
         # Botón para agregar
-        self.add_button = tk.Button(root, text="Agregar")
+        self.add_button = tk.Button(root, text="Agregar", command=self.add_transaction_type)
         self.add_button.grid(row=0, column=2, padx=10, pady=10)
 
         # Lista de tipos de transacción
         self.listbox = tk.Listbox(root, width=50, height=10)
         self.listbox.grid(row=1, column=0, columnspan=3, padx=10, pady=10)
-"""
+
+        # Cargar tipos de transacción
+        self.load_transaction_types()
+
     def add_transaction_type(self):      
         label = self.entry_label.get().strip()
         if not label:
@@ -36,10 +39,3 @@ class TransactionTypeUI:
         transaction_types = TransactionTypeRepository.get_all()
         for t in transaction_types:
             self.listbox.insert(tk.END, f"{t.id_transaction_type}: {t.label}")
-"""
-
-# Ejecutar la aplicación
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = TransactionTypeUI(root)
-    root.mainloop()
