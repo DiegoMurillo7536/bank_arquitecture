@@ -57,4 +57,4 @@ class AccountUI(tk.Frame):
         self.listbox.delete(0, tk.END)
         account = AccountRepository.get_all()
         for t in account:
-            self.listbox.insert(tk.END, f"{t.account_type_id}: {t.label} - Exento: {t.is_exempt} - Tipo: {t.account_type_id}")
+            self.listbox.insert(tk.END, f"{t.id_account}: {t.label} - Exento: {t.is_exempt} - Tipo: {t.account_type_id}")
