@@ -2,6 +2,7 @@ db_connection/__pycache__/
 models/__pycache__/
 models/creation_models/__pycache__/
 models/orm/__pycache__/
+models/creation_models/__pycache__/
 repositories/__pycache__/
 views/__pycache__/
 .env
