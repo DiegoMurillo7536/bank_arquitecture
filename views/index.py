@@ -1,5 +1,7 @@
 import tkinter as tk
 from views.transaction_type import TransactionTypeUI
+from views.account_type import AccountTypeUI
+
 from views.account import AccountUI
 class IndexIu(tk.Frame):
     def __init__(self, parent, controller):
@@ -10,6 +12,8 @@ class IndexIu(tk.Frame):
 
         tk.Button(self, text="Gestionar Tipos de Transacción",
                   command=lambda: controller.show_frame(TransactionTypeUI)).pack(pady=5)
+        tk.Button(self, text="Gestionar Tipos de Cuentas",
+                  command=lambda: controller.show_frame(AccountTypeUI)).pack(pady=5)
         
         tk.Button(self, text="Gestionar Cuentas bancarias",
                   command=lambda: controller.show_frame(AccountUI)).pack(pady=5)
