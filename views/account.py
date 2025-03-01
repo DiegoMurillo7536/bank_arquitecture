@@ -6,6 +6,7 @@ class AccountUI(tk.Frame):
     def __init__(self, parent, controller):
         super().__init__(parent)
         self.controller = controller
+        self.configure(bg="#aed6f1")
 
         # Campo de entrada para el nombre de la cuenta
         tk.Label(self, text="Nombre de la cuenta:").grid(row=0, column=0, padx=10, pady=10)
