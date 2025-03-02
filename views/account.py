@@ -7,6 +7,7 @@ class AccountUI(tk.Frame):
         super().__init__(parent)
         self.controller = controller
         self.configure(bg="#aed6f1")
+        button_style = {"relief": "groove", "bd": 5, "padx": 10, "pady": 5, "font": ("Arial", 12)}
 
         # Campo de entrada para el nombre de la cuenta
         tk.Label(self, text="Nombre de la cuenta:").grid(row=0, column=0, padx=10, pady=10)
@@ -34,6 +35,10 @@ class AccountUI(tk.Frame):
         # Cargar tipos de transacción
         self.load_account()
 
+        tk.Button(self, text="Ir al menú", bg="#FAD7A0", fg="#333333",
+          command=lambda: self.show_index(), **button_style).grid(row=2, column=0, columnspan=3, pady=5)
+
+    
     def add_account(self):      
         label = self.entry_label.get().strip()
         is_exempt = self.is_exempt_var.get()
@@ -59,3 +64,8 @@ class AccountUI(tk.Frame):
         account = AccountRepository.get_all()
         for t in account:
             self.listbox.insert(tk.END, f"{t.id_account}: {t.label} - Exento: {t.is_exempt} - Tipo: {t.account_type_id}")
+
+    def show_index(self):
+        from views.index import IndexIu  # Importación dentro del método para evitar el ciclo
+        self.controller.show_frame(IndexIu)
+        
