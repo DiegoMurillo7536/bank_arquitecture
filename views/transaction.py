@@ -6,6 +6,8 @@ class TransactionUI(tk.Frame):
     def __init__(self, parent, controller):
         super().__init__(parent)
         self.controller = controller
+        self.configure(bg="#aed6f1")
+        button_style = {"relief": "groove", "bd": 5, "padx": 10, "pady": 5, "font": ("Arial", 12)}
 
         # Campos de entrada
         tk.Label(self, text="Monto:").grid(row=0, column=0, padx=10, pady=10)
@@ -36,8 +38,12 @@ class TransactionUI(tk.Frame):
         self.listbox = tk.Listbox(self, width=80, height=10)
         self.listbox.grid(row=6, column=0, columnspan=3, padx=10, pady=10)
         
+        tk.Button(self, text="Ir al menú", bg="#FAD7A0", fg="#333333",
+          command=lambda: self.show_index(), **button_style).grid(row=10, column=0, columnspan=7, pady=40)
+
         # Cargar transacciones
         self.load_transactions()
+
 
     def add_transaction(self):
         try:
@@ -70,3 +76,7 @@ class TransactionUI(tk.Frame):
         self.entry_from_account.delete(0, tk.END)
         self.entry_to_account.delete(0, tk.END)
         self.entry_transaction_type.delete(0, tk.END)
+
+    def show_index(self):
+        from views.index import IndexIu  # Importación dentro del método para evitar el ciclo
+        self.controller.show_frame(IndexIu)        

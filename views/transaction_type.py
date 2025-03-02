@@ -6,6 +6,8 @@ class TransactionTypeUI(tk.Frame):
     def __init__(self, parent, controller):
         super().__init__(parent)
         self.controller = controller
+        self.configure(bg="#aed6f1")
+        button_style = {"relief": "groove", "bd": 5, "padx": 10, "pady": 5, "font": ("Arial", 12)}
 
         # Campo de entrada
         tk.Label(self, text="Nombre del Tipo de Transacción:").grid(row=0, column=0, padx=10, pady=10)
@@ -19,6 +21,9 @@ class TransactionTypeUI(tk.Frame):
         # Lista de tipos de transacción
         self.listbox = tk.Listbox(self, width=50, height=10)
         self.listbox.grid(row=1, column=0, columnspan=3, padx=10, pady=10)         
+
+        tk.Button(self, text="Ir al menú", bg="#FAD7A0", fg="#333333",
+          command=lambda: self.show_index(), **button_style).grid(row=2, column=0, columnspan=3, pady=5)
 
         # Cargar tipos de transacción
         self.load_transaction_types()
@@ -39,3 +44,7 @@ class TransactionTypeUI(tk.Frame):
         transaction_types = TransactionTypeRepository.get_all()
         for t in transaction_types:
             self.listbox.insert(tk.END, f"{t.id_transaction_type}: {t.label}")
+
+    def show_index(self):
+        from views.index import IndexIu  # Importación dentro del método para evitar el ciclo
+        self.controller.show_frame(IndexIu)        
