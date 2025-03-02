@@ -1,6 +1,7 @@
 import tkinter as tk
 from views.index import IndexIu
 from views.transaction_type import TransactionTypeUI
+from views.User import UserUI
 from views.account_type import AccountTypeUI
 from views.account import AccountUI
 from views.transaction import TransactionUI
@@ -19,7 +20,7 @@ class App(tk.Tk):
         self.frames = {}
 
         # Agregar las vistas a la aplicación
-        for F in (IndexIu, TransactionTypeUI,AccountTypeUI, AccountUI, TransactionUI):
+        for F in (IndexIu, TransactionTypeUI,AccountTypeUI, AccountUI, TransactionUI,UserUI):
             frame = F(self.container, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
